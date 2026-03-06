@@ -74,8 +74,8 @@ const defaultCharacters = [
     bewegung: '-',
     hintergrund: 'Leitet das Abenteuer',
     notizen: 'GM-Ansicht: Übersicht aller Spieler-HP.',
-    quelle: 'Unterlagen/bilder/token-barbar.jpg',
-    token: 'Unterlagen/bilder/token-barbar.jpg',
+    quelle: 'Unterlagen/bilder/token-mensch.jpg',
+    token: 'Unterlagen/bilder/token-mensch.jpg',
     tokenPos: 'center',
   },
 ];
@@ -96,9 +96,20 @@ function loadState() {
     if (!hasGm) {
       const gm = defaultCharacters.find((c) => c.id === 'gm');
       parsed.characters.push(gm);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
     }
 
+    // GM-Token hart auf den Mann mit Hut + Schlange setzen
+    const gmIndex = parsed.characters.findIndex((c) => c.id === 'gm');
+    if (gmIndex >= 0) {
+      parsed.characters[gmIndex] = {
+        ...parsed.characters[gmIndex],
+        token: 'Unterlagen/bilder/token-mensch.jpg',
+        quelle: 'Unterlagen/bilder/token-mensch.jpg',
+        tokenPos: 'center',
+      };
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
     return parsed;
   } catch {
     return { characters: defaultCharacters };
