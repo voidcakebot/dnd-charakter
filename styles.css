@@ -211,4 +211,161 @@ input, textarea {
   margin-top: 0;
 }
 
+.spell-section {
+  margin-top: 12px;
+}
+.cantrip-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.spell-chip.active {
+  border-color: #d8a11f;
+  box-shadow: 0 0 0 1px #d8a11f inset;
+}
+.save-bottom {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.spell-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+.spell-tab.active {
+  border-color: #d8a11f;
+  box-shadow: 0 0 0 1px #d8a11f inset;
+}
+.spell-tab-pane { display: none; }
+.spell-tab-pane.active { display: block; }
+.spell-select-label {
+  display: block;
+  margin-top: 10px;
+}
+.spell-select-label select {
+  width: 100%;
+  margin-top: 4px;
+  background: var(--card-2);
+  color: var(--text);
+  border: 1px solid #394259;
+  border-radius: 9px;
+  padding: 8px;
+}
+.spell-info-box {
+  margin-top: 8px;
+  background: #1a2231;
+  border: 1px solid #33405a;
+  border-radius: 10px;
+  padding: 10px;
+  color: #d4ddef;
+}
+.spell-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.spell-list-descriptions {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+  max-height: 180px;
+  overflow: auto;
+}
+.spell-mini {
+  background: #1a2231;
+  border: 1px solid #33405a;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.86rem;
+  color: #d4ddef;
+}
+.prepared-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+.prepared-pill {
+  width: 100%;
+  text-align: left;
+  color: #d4ddef;
+  background: #1a2231;
+  border: 1px solid #33405a;
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
+}
+.select-with-ok {
+  display: block;
+}
+.slots-wrap {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.slot-track {
+  display: flex;
+  gap: 6px;
+}
+.slot {
+  width: 54px;
+  height: 60px;
+  border-radius: 10px;
+  border: 1px solid #55617e;
+  background: #1f2738;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.slot-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #7e8dac;
+}
+.slot-index {
+  font-size: 0.72rem;
+  color: #9fb0cf;
+}
+.slot.slot-ready,
+.slot.slot-used {
+  border-color: #d8a11f;
+  box-shadow: 0 0 0 1px rgba(216,161,31,0.35) inset;
+}
+.slot.slot-ready .slot-dot,
+.slot.slot-used .slot-dot {
+  background: #f0b429;
+  border-color: #f0b429;
+  position: relative;
+}
+.slot.slot-used .slot-dot::before {
+  content: '✕';
+  color: #2a1a00;
+  font-size: 13px;
+  line-height: 18px;
+  display: block;
+  text-align: center;
+}
+.prepared-pill.active {
+  color: #111;
+  background: #f0b429;
+  border-color: #f0b429;
+}
+.bio-btn {
+  margin-top: 6px;
+  background: #f0b429;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-weight: 700;
+}
+
 .success { color: var(--ok); }
