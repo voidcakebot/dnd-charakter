@@ -3,7 +3,7 @@ const TOKEN_SOURCE = 'Unterlagen/bilder/charakterauswahl-v1.jpg';
 
 const SPELL_BOOK = {
   cleric: {
-    title: 'Kleriker-Zauber',
+    title: 'Zauber',
     levelData: {
       1: { prepared: 5, slots: 3, maxSpellLevel: 1 },
       2: { prepared: 5, slots: 3, maxSpellLevel: 1 },
@@ -34,7 +34,7 @@ const SPELL_BOOK = {
     ],
   },
   mage: {
-    title: 'Magier-Zauber',
+    title: 'Zauber',
     levelData: {
       1: { prepared: 4, slots: 2, maxSpellLevel: 1 },
       2: { prepared: 5, slots: 3, maxSpellLevel: 1 },
@@ -74,10 +74,10 @@ function casterKey(id) {
 }
 
 const defaultCharacters = [
-  { id: 'barbar', slot: 1, name: '', volk: 'Halb-Ork', klasse: 'Barbar', stufe: 1, xp: 0, hpAktuell: 0, hpMax: 0, ruestungsklasse: 0, initiative: 0, bewegung: '', hintergrund: 'Sonderling', notizen: 'Aus PDF übernommen. Name folgt.', herkunft: 'Halb-Ork aus den Grenzlanden, geprägt von einem harten Leben außerhalb geordneter Städte.', charaktereigenschaften: 'Direkt, robust, kampforientiert, schützt seine Gruppe im Nahkampf.', ueberzeugung: 'Stärke und Durchhaltewillen sichern das Überleben.', bio: 'Dieser Halb-Ork-Barbar ist ein kompromissloser Frontkämpfer. Er geht Probleme direkt an, hält viel Schaden aus und übernimmt im Kampf die Rolle des Schilds für die Gruppe. Als Sonderling ist er unabhängig, manchmal rau, aber verlässlich, wenn es ernst wird.', quelle: 'Unterlagen/pdfs/charakter-03-barbar-halbork.pdf', token: 'Unterlagen/bilder/token-mensch.jpg', tokenPos: 'center' },
-  { id: 'kleriker', slot: 2, name: '', volk: 'Hügelzwerg', klasse: 'Kleriker', stufe: 1, xp: 18, hpAktuell: 8, hpMax: 11, ruestungsklasse: 16, initiative: 0, bewegung: '7,5 m', hintergrund: 'Soldat', notizen: 'Zwergischer Kleriker aus PDF.', herkunft: 'Hügelzwerg mit Wurzeln in den zwergischen Königreichen; militärisch geprägt durch die Mintarn-Söldner.', charaktereigenschaften: 'Höflich, respektvoll, pflichtbewusst, aber nicht blind gehorsam; handelt nach Gewissen.', ueberzeugung: 'Würde und Respekt für alle. Macht darf die Schwachen nicht unterdrücken.', bio: 'Der Hügelzwerg-Kleriker war Weibel bei den Mintarn-Söldnern, verlor aber den Glauben an Vorgesetzte, die Autorität missbrauchten. Er folgte seinem Gewissen, wandte sich seiner Gottheit zu und kämpft nun als Beschützer der Gruppe. Seine Lebensdomäne macht ihn zu einem starken Heiler und Unterstützer. Sein persönliches Ziel ist es, den Rotbrennern in Phandalin entgegenzutreten.', quelle: 'Unterlagen/pdfs/charakter-01-zwergischer-kleriker.pdf', token: 'Unterlagen/bilder/token-zwerg.jpg', tokenPos: 'center' },
-  { id: 'magier', slot: 3, name: '', volk: 'Hochelf', klasse: 'Magier', stufe: 1, xp: 12, hpAktuell: 5, hpMax: 8, ruestungsklasse: 12, initiative: 2, bewegung: '9 m', hintergrund: 'Tempeldiener', notizen: 'Elfenmagier aus PDF.', herkunft: 'Hochelf aus den Sonnenelfen, ursprünglich aus einer zurückgezogenen Kultur, nun unter anderen Völkern unterwegs.', charaktereigenschaften: 'Neugierig, gelehrt, wortgewandt, wissensorientiert; wirkt nach außen distanziert, denkt aber idealistisch.', ueberzeugung: 'Wissen ist der Weg zu Macht und Selbstvervollkommnung und sollte geteilt werden.', bio: 'Der Hochelf-Magier dient Oghma, dem Gott des Wissens. Er sammelt Erkenntnisse mit fast fanatischer Disziplin und sieht Wissen als Verantwortung. Seine Vision führt ihn zu einer Queste: die Entweihung eines Oghma-Altars in Burg Zackenschlund zu beenden. Im Spiel agiert er taktisch mit Kontrolle, Distanzschaden und hoher arkaner Präzision.', quelle: 'Unterlagen/pdfs/charakter-02-elfenmagier.pdf', token: 'Unterlagen/bilder/token-magier.jpg', tokenPos: 'center' },
-  { id: 'gm', slot: 4, name: 'GM', volk: 'Spielleitung', klasse: 'Übersicht', stufe: 0, xp: 0, hpAktuell: 0, hpMax: 0, ruestungsklasse: 0, initiative: 0, bewegung: '-', hintergrund: 'Leitet das Abenteuer', notizen: 'GM-Ansicht', quelle: 'Unterlagen/bilder/token-unbekannt-2.jpg', token: 'Unterlagen/bilder/token-unbekannt-2.jpg', tokenPos: 'center' },
+  { id: 'barbar', slot: 1, name: '', volk: 'Halb-Ork', klasse: 'Barbar', stufe: 1, xp: 0, hpAktuell: 15, hpMax: 15, ruestungsklasse: 14, initiative: 1, bewegung: '9 m', sta: 16, ges: 13, kon: 16, int: 8, wei: 10, cha: 12, staRet: '+5', gesRet: '+1', konRet: '+5', intRet: '-1', weiRet: '+0', chaRet: '+1', passiveWahrnehmung: 10, uebungsbonus: '+2', skillAkrobatik:'+1', skillArkane:'-1', skillAthletik:'+5', skillAuftreten:'+1', skillEinschuechtern:'+3', skillFingerfertigkeit:'+1', skillGeschichte:'-1', skillHeilkunde:'+0', skillHeimlichkeit:'+1', skillTiere:'+2', skillMotiv:'+0', skillNachforschungen:'-1', skillNaturkunde:'+1', skillReligion:'-1', skillTaeuschen:'+1', skillUeberleben:'+2', skillUeberzeugen:'+1', skillWahrnehmung:'+0', hintergrund: 'Sonderling', notizen: '', herkunft: 'Halb-Ork aus den Grenzlanden, geprägt von einem harten Leben außerhalb geordneter Städte.', charaktereigenschaften: 'Direkt, robust, kampforientiert, schützt seine Gruppe im Nahkampf.', ueberzeugung: 'Stärke und Durchhaltewillen sichern das Überleben.', sprachen: 'Gemeinsprache, Orkisch', waffen: [{name:'Zweihandaxt', bonus:'+5', schaden:'1W12 + 3', art:'Hieb', einsatz:'Schwer, zweihändig.'},{name:'Beil', bonus:'+5', schaden:'1W6 + 3', art:'Hieb', einsatz:'Leicht, Wurfwaffe, Reichweite 6/18 m.'},{name:'Wurfspeer', bonus:'+5', schaden:'1W6 + 3', art:'Stich', einsatz:'Wurfwaffe, Reichweite 9/36 m.'}], bio: 'Dieser Halb-Ork-Barbar ist ein kompromissloser Frontkämpfer. Er geht Probleme direkt an, hält viel Schaden aus und übernimmt im Kampf die Rolle des Schilds für die Gruppe. Als Sonderling ist er unabhängig, manchmal rau, aber verlässlich, wenn es ernst wird.', quelle: 'Unterlagen/pdfs/charakter-03-barbar-halbork.pdf', token: 'Unterlagen/bilder/token-mensch.jpg', tokenPos: 'center' },
+  { id: 'kleriker', slot: 2, name: '', volk: 'Hügelzwerg', klasse: 'Kleriker', stufe: 1, xp: 18, hpAktuell: 8, hpMax: 11, ruestungsklasse: 16, initiative: 0, bewegung: '7,5 m', sta: 14, ges: 8, kon: 10, int: 15, wei: 16, cha: 12, staRet: '+4', gesRet: '-1', konRet: '+0', intRet: '+2', weiRet: '+5', chaRet: '+1', passiveWahrnehmung: 13, uebungsbonus: '+2', skillAkrobatik:'-1', skillArkane:'+0', skillAthletik:'+4', skillAuftreten:'+1', skillEinschuechtern:'+3', skillFingerfertigkeit:'-1', skillGeschichte:'+0', skillHeilkunde:'+5', skillHeimlichkeit:'-1', skillTiere:'+3', skillMotiv:'+3', skillNachforschungen:'+0', skillNaturkunde:'+0', skillReligion:'+2', skillTaeuschen:'+1', skillUeberleben:'+3', skillUeberzeugen:'+1', skillWahrnehmung:'+3', hintergrund: 'Soldat', notizen: '', herkunft: 'Hügelzwerg mit Wurzeln in den zwergischen Königreichen; militärisch geprägt durch die Mintarn-Söldner.', charaktereigenschaften: 'Höflich, respektvoll, pflichtbewusst, aber nicht blind gehorsam; handelt nach Gewissen.', ueberzeugung: 'Würde und Respekt für alle. Macht darf die Schwachen nicht unterdrücken.', sprachen: 'Gemeinsprache, Zwergisch', waffen: [{name:'Kriegshammer', bonus:'+4', schaden:'1W8 + 2', art:'Wucht', einsatz:'Standard-Nahkampfangriff.'},{name:'Beil', bonus:'+4', schaden:'1W6 + 2', art:'Hieb', einsatz:'Nahkampf oder Wurf (6 m normal / 18 m mit Nachteil).'}], bio: 'Der Hügelzwerg-Kleriker war Weibel bei den Mintarn-Söldnern, verlor aber den Glauben an Vorgesetzte, die Autorität missbrauchten. Er folgte seinem Gewissen, wandte sich seiner Gottheit zu und kämpft nun als Beschützer der Gruppe. Seine Lebensdomäne macht ihn zu einem starken Heiler und Unterstützer. Sein persönliches Ziel ist es, den Rotbrennern in Phandalin entgegenzutreten.', quelle: 'Unterlagen/pdfs/charakter-01-zwergischer-kleriker.pdf', token: 'Unterlagen/bilder/token-zwerg.jpg', tokenPos: 'center' },
+  { id: 'magier', slot: 3, name: '', volk: 'Hochelf', klasse: 'Magier', stufe: 1, xp: 12, hpAktuell: 5, hpMax: 8, ruestungsklasse: 12, initiative: 2, bewegung: '9 m', sta: 10, ges: 15, kon: 16, int: 14, wei: 12, cha: 8, staRet: '+0', gesRet: '+2', konRet: '+3', intRet: '+5', weiRet: '+1', chaRet: '-1', passiveWahrnehmung: 15, uebungsbonus: '+2', skillAkrobatik:'+2', skillArkane:'+5', skillAthletik:'+0', skillAuftreten:'-1', skillEinschuechtern:'-1', skillFingerfertigkeit:'+2', skillGeschichte:'+5', skillHeilkunde:'+1', skillHeimlichkeit:'+2', skillTiere:'+1', skillMotiv:'+3', skillNachforschungen:'+5', skillNaturkunde:'+3', skillReligion:'+5', skillTaeuschen:'-1', skillUeberleben:'+1', skillUeberzeugen:'-1', skillWahrnehmung:'+3', hintergrund: 'Tempeldiener', notizen: '', herkunft: 'Hochelf aus den Sonnenelfen, ursprünglich aus einer zurückgezogenen Kultur, nun unter anderen Völkern unterwegs.', charaktereigenschaften: 'Neugierig, gelehrt, wortgewandt, wissensorientiert; wirkt nach außen distanziert, denkt aber idealistisch.', ueberzeugung: 'Wissen ist der Weg zu Macht und Selbstvervollkommnung und sollte geteilt werden.', sprachen: 'Gemeinsprache, Elfisch, Drakonisch, Zwergisch, Goblinisch', waffen: [{name:'Kurzschwert', bonus:'+4', schaden:'1W6 + 2', art:'Stich', einsatz:'Nahkampf; fallback wenn Zauber ungeeignet sind.'}], bio: 'Der Hochelf-Magier dient Oghma, dem Gott des Wissens. Er sammelt Erkenntnisse mit fast fanatischer Disziplin und sieht Wissen als Verantwortung. Seine Vision führt ihn zu einer Queste: die Entweihung eines Oghma-Altars in Burg Zackenschlund zu beenden. Im Spiel agiert er taktisch mit Kontrolle, Distanzschaden und hoher arkaner Präzision.', quelle: 'Unterlagen/pdfs/charakter-02-elfenmagier.pdf', token: 'Unterlagen/bilder/token-magier.jpg', tokenPos: 'center' },
+  { id: 'gm', slot: 4, name: 'GM', volk: 'Spielleitung', klasse: 'Übersicht', stufe: 0, xp: 0, hpAktuell: 0, hpMax: 0, ruestungsklasse: 0, initiative: 0, bewegung: '-', sta: 0, ges: 0, kon: 0, int: 0, wei: 0, cha: 0, staRet: '+0', gesRet: '+0', konRet: '+0', intRet: '+0', weiRet: '+0', chaRet: '+0', passiveWahrnehmung: 0, uebungsbonus: '+0', hintergrund: 'Leitet das Abenteuer', notizen: '', quelle: 'Unterlagen/bilder/token-unbekannt-2.jpg', token: 'Unterlagen/bilder/token-unbekannt-2.jpg', tokenPos: 'center' },
 ].map(withCasterDefaults);
 
 const app = document.getElementById('app');
@@ -106,8 +106,12 @@ function loadState() {
       const d = defaultCharacters.find((x) => x.id === c.id);
       const merged = withCasterDefaults(c);
       if (!d) return merged;
+      const cleanedNotizen = (merged.notizen || '').trim();
+      const resetLegacyNote = ['Aus PDF übernommen. Name folgt.', 'Zwergischer Kleriker aus PDF.', 'Elfenmagier aus PDF.', 'GM-Ansicht'].includes(cleanedNotizen);
       return {
+        ...d,
         ...merged,
+        notizen: resetLegacyNote ? '' : merged.notizen,
         bio: merged.bio || d.bio,
         herkunft: merged.herkunft || d.herkunft,
         charaktereigenschaften: merged.charaktereigenschaften || d.charaktereigenschaften,
@@ -124,10 +128,11 @@ function loadState() {
 }
 
 function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function getRoute() { const h = location.hash || '#/'; const m1 = h.match(/^#\/char\/(.+)$/); if (m1) return { page: 'detail', id: m1[1] }; const m2 = h.match(/^#\/bio\/(.+)$/); if (m2) return { page: 'bio', id: m2[1] }; return { page: 'home' }; }
+function getRoute() { const h = location.hash || '#/'; const m1 = h.match(/^#\/char\/(.+)$/); if (m1) return { page: 'detail', id: m1[1] }; const m2 = h.match(/^#\/bio\/(.+)$/); if (m2) return { page: 'bio', id: m2[1] }; const m3 = h.match(/^#\/stats\/(.+)$/); if (m3) return { page: 'stats', id: m3[1] }; return { page: 'home' }; }
 function goTo(hash) { location.hash = hash; }
 
 function render() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   const state = loadState();
   const route = getRoute();
 
@@ -140,30 +145,164 @@ function render() {
   if (route.page === 'bio') {
     const bioChar = state.characters.find((c) => c.id === route.id);
     if (!bioChar || bioChar.id === 'gm') return goTo('#/');
-    app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${bioChar.token || TOKEN_SOURCE}" class="token-img" /></div><h2>${bioChar.name || '(Name folgt)'}</h2></div><div class="kv"><div class="card"><strong>Wer ist das?</strong><p class="muted">${escapeHtml(`${bioChar.volk} · ${bioChar.klasse}`)}</p></div><div class="card"><strong>Herkunft</strong><p class="muted">${escapeHtml(bioChar.herkunft || '-')}</p></div><div class="card"><strong>Charaktereigenschaften</strong><p class="muted">${escapeHtml(bioChar.charaktereigenschaften || '-')}</p></div><div class="card"><strong>Überzeugung</strong><p class="muted">${escapeHtml(bioChar.ueberzeugung || '-')}</p></div><div class="card"><strong>Hintergrund</strong><p class="muted">${escapeHtml(bioChar.hintergrund || '-')}</p></div></div><div class="spell-info-box"><p>${escapeHtml(bioChar.bio || 'Beschreibung folgt.')}</p></div></div><div class="save-bottom"><button class="secondary" id="back-bio">Zurück</button></div></section>`;
+    app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${bioChar.token || TOKEN_SOURCE}" class="token-img" /></div><div><h2>${bioChar.name || '(Name folgt)'}</h2><button type="button" id="open-stats" class="bio-btn">Basiswerte</button></div></div><div class="kv"><div class="card"><strong>Wer ist das?</strong><p class="muted">${escapeHtml(`${bioChar.volk} · ${bioChar.klasse}`)}</p></div><div class="card"><strong>Herkunft</strong><p class="muted">${escapeHtml(bioChar.herkunft || '-')}</p></div><div class="card"><strong>Charaktereigenschaften</strong><p class="muted">${escapeHtml(bioChar.charaktereigenschaften || '-')}</p></div><div class="card"><strong>Überzeugung</strong><p class="muted">${escapeHtml(bioChar.ueberzeugung || '-')}</p></div><div class="card"><strong>Hintergrund</strong><p class="muted">${escapeHtml(bioChar.hintergrund || '-')}</p></div><div class="card"><strong>Sprachen</strong><p class="muted">${escapeHtml(bioChar.sprachen || '-')}</p></div></div><div class="card"><strong>Profil</strong><p class="muted">${escapeHtml(bioChar.bio || 'Beschreibung folgt.')}</p></div></div><div class="save-bottom"><button class="secondary" id="back-bio">Zurück</button></div></section>`;
+    document.getElementById('open-stats').onclick = () => goTo(`#/stats/${bioChar.id}`);
     document.getElementById('back-bio').onclick = () => goTo(`#/char/${bioChar.id}`);
+    return;
+  }
+
+  if (route.page === 'stats') {
+    const sChar = state.characters.find((c) => c.id === route.id);
+    if (!sChar || sChar.id === 'gm') return goTo('#/');
+    app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${sChar.token || TOKEN_SOURCE}" class="token-img" /></div><h2>${sChar.name || '(Name folgt)'}</h2></div><form id="stats-form" class="form-grid stats-grid"><div style="grid-column:1/-1" class="stats-group"><strong>Kernwerte</strong></div>${field('ruestungsklasse','Rüstungsklasse',sChar.ruestungsklasse,'number')}${field('initiative','Initiative',sChar.initiative,'number')}${field('bewegung','Bewegung',sChar.bewegung)}${field('passiveWahrnehmung','Passive Wahrnehmung',sChar.passiveWahrnehmung,'number')}${field('uebungsbonus','Übungsbonus',sChar.uebungsbonus)}<div style="grid-column:1/-1" class="stats-group"><strong>Attribute</strong></div>${field('sta','Stärke',sChar.sta,'number')}${field('ges','Geschicklichkeit',sChar.ges,'number')}${field('kon','Konstitution',sChar.kon,'number')}${field('int','Intelligenz',sChar.int,'number')}${field('wei','Weisheit',sChar.wei,'number')}${field('cha','Charisma',sChar.cha,'number')}<div style="grid-column:1/-1" class="stats-group"><strong>Rettungswürfe</strong></div>${field('staRet','Rettungswurf Stärke',sChar.staRet)}${field('gesRet','Rettungswurf Geschicklichkeit',sChar.gesRet)}${field('konRet','Rettungswurf Konstitution',sChar.konRet)}${field('intRet','Rettungswurf Intelligenz',sChar.intRet)}${field('weiRet','Rettungswurf Weisheit',sChar.weiRet)}${field('chaRet','Rettungswurf Charisma',sChar.chaRet)}<div style="grid-column:1/-1" class="stats-group"><strong>Fertigkeiten</strong></div>${field('skillAkrobatik','Akrobatik (Ges)',sChar.skillAkrobatik)}${field('skillArkane','Arkane Kunde (Int)',sChar.skillArkane)}${field('skillAthletik','Athletik (Stä)',sChar.skillAthletik)}${field('skillAuftreten','Auftreten (Cha)',sChar.skillAuftreten)}${field('skillEinschuechtern','Einschüchtern (Cha)',sChar.skillEinschuechtern)}${field('skillFingerfertigkeit','Fingerfertigkeit (Ges)',sChar.skillFingerfertigkeit)}${field('skillGeschichte','Geschichte (Int)',sChar.skillGeschichte)}${field('skillHeilkunde','Heilkunde (Wei)',sChar.skillHeilkunde)}${field('skillHeimlichkeit','Heimlichkeit (Ges)',sChar.skillHeimlichkeit)}${field('skillTiere','Mit Tieren umgehen (Wei)',sChar.skillTiere)}${field('skillMotiv','Motiv erkennen (Wei)',sChar.skillMotiv)}${field('skillNachforschungen','Nachforschungen (Int)',sChar.skillNachforschungen)}${field('skillNaturkunde','Naturkunde (Int)',sChar.skillNaturkunde)}${field('skillReligion','Religion (Int)',sChar.skillReligion)}${field('skillTaeuschen','Täuschen (Cha)',sChar.skillTaeuschen)}${field('skillUeberleben','Überlebenskunst (Wei)',sChar.skillUeberleben)}${field('skillUeberzeugen','Überzeugen (Cha)',sChar.skillUeberzeugen)}${field('skillWahrnehmung','Wahrnehmung (Wei)',sChar.skillWahrnehmung)}</form></div><div class="save-bottom"><button class="secondary" id="back-stats">Zurück</button><div class="save-right"><span id="stats-msg" class="success"></span><button type="submit" form="stats-form">Speichern</button></div></div></section>`;
+
+    document.getElementById('stats-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const idx = state.characters.findIndex((c) => c.id === sChar.id);
+      const current = state.characters[idx];
+      const patch = {
+        sta: Number(fd.get('sta') || 0),
+        ges: Number(fd.get('ges') || 0),
+        kon: Number(fd.get('kon') || 0),
+        int: Number(fd.get('int') || 0),
+        wei: Number(fd.get('wei') || 0),
+        cha: Number(fd.get('cha') || 0),
+        staRet: String(fd.get('staRet') || '+0'),
+        gesRet: String(fd.get('gesRet') || '+0'),
+        konRet: String(fd.get('konRet') || '+0'),
+        intRet: String(fd.get('intRet') || '+0'),
+        weiRet: String(fd.get('weiRet') || '+0'),
+        chaRet: String(fd.get('chaRet') || '+0'),
+        passiveWahrnehmung: Number(fd.get('passiveWahrnehmung') || 0),
+        initiative: Number(fd.get('initiative') || 0),
+        ruestungsklasse: Number(fd.get('ruestungsklasse') || 0),
+        bewegung: String(fd.get('bewegung') || ''),
+        uebungsbonus: String(fd.get('uebungsbonus') || '+0'),
+        skillAkrobatik: String(fd.get('skillAkrobatik') || '+0'),
+        skillArkane: String(fd.get('skillArkane') || '+0'),
+        skillAthletik: String(fd.get('skillAthletik') || '+0'),
+        skillAuftreten: String(fd.get('skillAuftreten') || '+0'),
+        skillEinschuechtern: String(fd.get('skillEinschuechtern') || '+0'),
+        skillFingerfertigkeit: String(fd.get('skillFingerfertigkeit') || '+0'),
+        skillGeschichte: String(fd.get('skillGeschichte') || '+0'),
+        skillHeilkunde: String(fd.get('skillHeilkunde') || '+0'),
+        skillHeimlichkeit: String(fd.get('skillHeimlichkeit') || '+0'),
+        skillTiere: String(fd.get('skillTiere') || '+0'),
+        skillMotiv: String(fd.get('skillMotiv') || '+0'),
+        skillNachforschungen: String(fd.get('skillNachforschungen') || '+0'),
+        skillNaturkunde: String(fd.get('skillNaturkunde') || '+0'),
+        skillReligion: String(fd.get('skillReligion') || '+0'),
+        skillTaeuschen: String(fd.get('skillTaeuschen') || '+0'),
+        skillUeberleben: String(fd.get('skillUeberleben') || '+0'),
+        skillUeberzeugen: String(fd.get('skillUeberzeugen') || '+0'),
+        skillWahrnehmung: String(fd.get('skillWahrnehmung') || '+0'),
+      };
+      const changed = JSON.stringify({ ...current, ...patch }) !== JSON.stringify(current);
+      if (changed) {
+        state.characters[idx] = { ...current, ...patch };
+        saveState(state);
+      }
+      document.getElementById('stats-msg').textContent = changed ? 'Gespeichert' : 'Keine Änderungen';
+      setTimeout(() => { const el = document.getElementById('stats-msg'); if (el) el.textContent = ''; }, 1600);
+    });
+
+    document.getElementById('back-stats').onclick = () => goTo(`#/bio/${sChar.id}`);
     return;
   }
 
   const character = state.characters.find((c) => c.id === route.id);
   if (!character || character.id === 'gm') return goTo('#/');
 
-  app.innerHTML = `<section class="container"><div class="toolbar"><button class="secondary" id="back">← Zur Auswahl</button></div><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${character.token || TOKEN_SOURCE}" class="token-img" /></div><div><h2 id="detail-title">${character.name || '(Name folgt)'}</h2><button type="button" id="open-bio" class="bio-btn">${character.klasse}-Profil</button></div></div><form id="char-form" class="form-grid">${field('name','Name',character.name)}${field('volk','Volk',character.volk)}${field('klasse','Klasse',character.klasse)}${field('stufe','Stufe',character.stufe,'number')}${field('xp','XP',character.xp,'number')}<div class="hp-editor" style="grid-column:1/-1"><label>Trefferpunkte (aktuell / max)</label><div class="hp-controls"><button type="button" class="secondary" id="hp-minus">−</button><span id="hp-readout">${character.hpAktuell} / ${character.hpMax}</span><button type="button" id="hp-plus">+</button><input type="hidden" name="hpAktuell" id="hp-aktuell-input" value="${character.hpAktuell}" /><label class="hp-max-label">Max HP<input name="hpMax" id="hp-max-input" type="number" min="1" value="${character.hpMax}" /></label></div></div>${field('ruestungsklasse','Rüstungsklasse',character.ruestungsklasse,'number')}${field('initiative','Initiative',character.initiative,'number')}${field('bewegung','Bewegung',character.bewegung)}${field('hintergrund','Hintergrund',character.hintergrund)}<label style="grid-column:1/-1">Notizen<textarea name="notizen" rows="5">${escapeHtml(character.notizen || '')}</textarea></label></form></div>${spellSection(character)}<div class="save-bottom"><button type="submit" form="char-form">Speichern</button><span id="save-msg" class="success"></span></div></section>`;
+  app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${character.token || TOKEN_SOURCE}" class="token-img" /></div><div><h2 id="detail-title">${character.name || '(Name folgt)'}</h2><button type="button" id="open-bio" class="bio-btn">${character.klasse}-Profil</button></div></div><form id="char-form" class="form-grid">${field('name','Name',character.name)}${field('stufe','Stufe',character.stufe,'number')}${field('xp','XP',character.xp,'number')}<div class="hp-editor" style="grid-column:1/-1"><label>Trefferpunkte (aktuell / max)</label><div class="hp-controls"><button type="button" class="secondary" id="hp-minus">−</button><span id="hp-readout">${character.hpAktuell} / ${character.hpMax}</span><button type="button" id="hp-plus">+</button><input type="hidden" name="hpAktuell" id="hp-aktuell-input" value="${character.hpAktuell}" /><label class="hp-max-label">Max HP<input name="hpMax" id="hp-max-input" type="number" min="1" value="${character.hpMax}" /></label></div></div><label style="grid-column:1/-1">Notizen<textarea name="notizen" rows="4">${escapeHtml(character.notizen || '')}</textarea></label></form></div>${weaponSection(character)}${spellSection(character)}<div id="unconscious-overlay" class="unconscious-overlay" aria-hidden="true"><div class="unconscious-card"><h2>OHNMACHT</h2><img id="unconscious-image" class="unconscious-image" alt="Ohnmacht" src="Unterlagen/bilder/ohnmacht-katze.jpg" /><button id="revive-btn" type="button">Gerettet</button></div></div><div class="save-bottom"><button class="secondary" id="back-bottom">← Zur Auswahl</button><div class="save-right"><span id="save-msg" class="success"></span><button type="submit" form="char-form">Speichern</button></div></div></section>`;
 
-  document.getElementById('back').onclick = () => goTo('#/');
+  document.getElementById('back-bottom').onclick = () => goTo('#/');
   document.getElementById('open-bio').onclick = () => goTo(`#/bio/${character.id}`);
+
+  function weaponPromptFlow(initial = {}) {
+    const name = prompt('Name der Waffe (z. B. Langschwert)', initial.name || '');
+    if (!name) return null;
+    const bonus = prompt('Angriffsbonus (z. B. +5)', initial.bonus || '+0') || '+0';
+    const schaden = prompt('Schaden (z. B. 1W8 + 3)', initial.schaden || '-') || '-';
+    const art = prompt('Schadensart (z. B. Hieb/Stich/Wucht)', initial.art || '-') || '-';
+    const einsatz = prompt('Kurzer Einsatzhinweis', initial.einsatz || '') || '';
+    return { name, bonus, schaden, art, einsatz };
+  }
+
+  document.getElementById('add-weapon')?.addEventListener('click', () => {
+    const nextWeapon = weaponPromptFlow();
+    if (!nextWeapon) return;
+
+    const i = state.characters.findIndex((c) => c.id === character.id);
+    const current = state.characters[i];
+    const waffen = Array.isArray(current.waffen) ? current.waffen : [];
+    state.characters[i] = { ...current, waffen: [...waffen, nextWeapon] };
+    saveState(state);
+    render();
+  });
+
+  document.querySelectorAll('[data-weapon-index]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const weaponIndex = Number(el.getAttribute('data-weapon-index'));
+      const i = state.characters.findIndex((c) => c.id === character.id);
+      const current = state.characters[i];
+      const waffen = Array.isArray(current.waffen) ? [...current.waffen] : [];
+      const w = waffen[weaponIndex];
+      if (!w) return;
+
+      const action = prompt('Waffe bearbeiten: "edit" zum Bearbeiten, "delete" zum Löschen', 'edit');
+      if (!action) return;
+
+      if (action.toLowerCase() === 'delete') {
+        const ok = confirm(`Waffe "${w.name}" wirklich löschen?`);
+        if (!ok) return;
+        waffen.splice(weaponIndex, 1);
+        state.characters[i] = { ...current, waffen };
+        saveState(state);
+        render();
+        return;
+      }
+
+      const updatedWeapon = weaponPromptFlow(w);
+      if (!updatedWeapon) return;
+      waffen[weaponIndex] = updatedWeapon;
+      state.characters[i] = { ...current, waffen };
+      saveState(state);
+      render();
+    });
+  });
 
   const hpAktuellInput = document.getElementById('hp-aktuell-input');
   const hpMaxInput = document.getElementById('hp-max-input');
   const hpReadout = document.getElementById('hp-readout');
+  const overlay = document.getElementById('unconscious-overlay');
+  const reviveBtn = document.getElementById('revive-btn');
+
   function syncHpReadout() {
     const max = Math.max(1, Number(hpMaxInput.value || 1));
     let cur = Math.max(0, Math.min(max, Number(hpAktuellInput.value || 0)));
-    hpMaxInput.value = max; hpAktuellInput.value = cur; hpReadout.textContent = `${cur} / ${max}`;
+    hpMaxInput.value = max;
+    hpAktuellInput.value = cur;
+    hpReadout.textContent = `${cur} / ${max}`;
+    if (overlay) overlay.classList.toggle('show', cur === 0);
   }
+
   document.getElementById('hp-minus').onclick = () => { hpAktuellInput.value = Number(hpAktuellInput.value || 0) - 1; syncHpReadout(); };
   document.getElementById('hp-plus').onclick = () => { hpAktuellInput.value = Number(hpAktuellInput.value || 0) + 1; syncHpReadout(); };
-  hpMaxInput.addEventListener('input', syncHpReadout); syncHpReadout();
+  hpMaxInput.addEventListener('input', syncHpReadout);
+
+  reviveBtn?.addEventListener('click', () => {
+    const max = Math.max(1, Number(hpMaxInput.value || 1));
+    const input = prompt(`Wie viele HP hat ${character.name || 'der Charakter'} wieder? (1-${max})`, '1');
+    if (input === null) return;
+    const value = Math.max(1, Math.min(max, Number(input) || 1));
+    hpAktuellInput.value = value;
+    syncHpReadout();
+  });
+
+  syncHpReadout();
+
+  let spellDirtySinceSave = false;
 
   document.getElementById('char-form').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -173,12 +312,16 @@ function render() {
     const updated = withCasterDefaults({ ...state.characters[i], ...next });
     const changed = JSON.stringify(updated) !== JSON.stringify(state.characters[i]);
     if (changed) { state.characters[i] = updated; saveState(state); }
-    document.getElementById('save-msg').textContent = changed ? '✅ Änderungen gespeichert' : 'ℹ️ Keine Änderungen';
+    const saved = changed || spellDirtySinceSave;
+    document.getElementById('save-msg').textContent = saved ? 'Gespeichert' : 'Keine Änderungen';
+    if (saved) spellDirtySinceSave = false;
     setTimeout(() => { const el = document.getElementById('save-msg'); if (el) el.textContent = ''; }, 1800);
     document.getElementById('detail-title').textContent = `${updated.name || '(Name folgt)'}`;
   });
 
-  wireSpellUi(state, character.id);
+  wireSpellUi(state, character.id, () => {
+    spellDirtySinceSave = true;
+  });
 }
 
 function spellSection(character) {
@@ -194,10 +337,10 @@ function spellSection(character) {
   const used = Math.min(Number(character.slotsUsed || 0), lvlCfg.slots);
 
   const activeTab = 'cantrip';
-  return `<section class="card spell-section"><h3>${cfg.title}</h3><div class="spell-tabs"><button type="button" class="secondary spell-tab ${activeTab==='cantrip'?'active':''}" data-tab="cantrip">Zaubertricks</button><button type="button" class="secondary spell-tab ${activeTab==='spells'?'active':''}" data-tab="spells">Zauber</button></div><div id="tab-cantrip" class="spell-tab-pane ${activeTab==='cantrip'?'active':''}"><label class="spell-select-label">Zaubertrick auswählen<select id="cantrip-select">${cfg.cantrips.map((c) => `<option value="${c.id}" ${c.id===activeCantrip.id?'selected':''}>${c.name}</option>`).join('')}</select></label><div class="spell-info-box" id="cantrip-info">${activeCantrip.text}</div></div><div id="tab-spells" class="spell-tab-pane ${activeTab==='spells'?'active':''}"><label class="spell-select-label">Zauber (nur ${character.klasse})<div class="select-with-ok"><select id="spell-select" multiple size="8">${available.map((s)=>`<option value="${s.id}" ${prepared.includes(s.id)?'selected':''}>Grad ${s.level} · ${s.name} — ${shortOptionText(s.text)}</option>`).join('')}</select></div></label><div class="spell-actions"><button type="button" class="secondary" id="spell-reset">Auswahl zurücksetzen</button></div><p class="muted">Ausgewählt: <strong id="prepared-count">${prepared.length}</strong>/${lvlCfg.prepared}</p><p class="muted">Als Nächstes unten die ausgewählten Zauber den Zauberplätzen zuweisen.</p><div id="prepared-list" class="prepared-list">${prepared.length ? prepared.map((id)=>`<button type="button" class="pill prepared-pill" data-prepared="${id}">${(cfg.spells.find((s)=>s.id===id)||{name:id}).name}</button>`).join('') : '<span>Noch keine Zauber ausgewählt.</span>'}</div><div class="slots-wrap"><span>Zauberplätze:</span><div id="slot-track" class="slot-track">${Array.from({length:lvlCfg.slots},(_,i)=>`<button type="button" class="slot slot-empty" data-slot="${i}"><span class="slot-dot"></span><span class="slot-index">${i+1}</span></button>`).join('')}</div></div></div></section>`;
+  return `<section class="card spell-section"><h3>${cfg.title}</h3><div class="spell-tabs"><button type="button" class="secondary spell-tab ${activeTab==='cantrip'?'active':''}" data-tab="cantrip">Zaubertricks</button><button type="button" class="secondary spell-tab ${activeTab==='spells'?'active':''}" data-tab="spells">Zauber</button></div><div id="tab-cantrip" class="spell-tab-pane ${activeTab==='cantrip'?'active':''}"><label class="spell-select-label">Zaubertrick auswählen<select id="cantrip-select">${cfg.cantrips.map((c) => `<option value="${c.id}" ${c.id===activeCantrip.id?'selected':''}>${c.name}</option>`).join('')}</select></label><div class="spell-info-box" id="cantrip-info">${activeCantrip.text}</div></div><div id="tab-spells" class="spell-tab-pane ${activeTab==='spells'?'active':''}"><label class="spell-select-label">Zauber</label><div id="spell-picker" class="spell-picker">${available.map((s)=>`<button type="button" class="spell-row ${prepared.includes(s.id)?'active':''}" data-spell-id="${s.id}"><div class="spell-row-head"><div class="spell-row-title">Grad ${s.level} · ${s.name}</div><span class="pick-indicator">✓</span></div><div class="spell-row-desc">${escapeHtml(shortOptionText(s.text, 140))}</div></button>`).join('')}</div><div class="spell-actions"><button type="button" class="secondary" id="spell-reset">Auswahl zurücksetzen</button></div><p class="muted">Ausgewählt: <strong id="prepared-count">${prepared.length}</strong>/${lvlCfg.prepared}</p><p class="muted">Als Nächstes unten die ausgewählten Zauber den Zauberplätzen zuweisen.</p><div id="prepared-list" class="prepared-list">${prepared.length ? prepared.map((id)=>`<button type="button" class="pill prepared-pill" data-prepared="${id}">${(cfg.spells.find((s)=>s.id===id)||{name:id}).name}</button>`).join('') : '<span>Noch keine Zauber ausgewählt.</span>'}</div><div class="slots-wrap"><span>Zauberplätze:</span><div id="slot-track" class="slot-track">${Array.from({length:lvlCfg.slots},(_,i)=>`<button type="button" class="slot slot-empty" data-slot="${i}"><span class="slot-dot"></span><span class="slot-index">${i+1}</span></button>`).join('')}</div></div></div></section>`;
 }
 
-function wireSpellUi(state, charId) {
+function wireSpellUi(state, charId, onDirty) {
   const idx = state.characters.findIndex((c) => c.id === charId);
   if (idx < 0) return;
   const key = casterKey(state.characters[idx].id);
@@ -206,7 +349,7 @@ function wireSpellUi(state, charId) {
 
   const cantripSelect = document.getElementById('cantrip-select');
   const cantripInfo = document.getElementById('cantrip-info');
-  const spellSelect = document.getElementById('spell-select');
+  const spellPicker = document.getElementById('spell-picker');
   const preparedCount = document.getElementById('prepared-count');
   const preparedList = document.getElementById('prepared-list');
   const slotTrack = document.getElementById('slot-track');
@@ -220,6 +363,7 @@ function wireSpellUi(state, charId) {
   function persist(patch) {
     state.characters[idx] = withCasterDefaults({ ...state.characters[idx], ...patch });
     saveState(state);
+    if (onDirty) onDirty();
   }
 
   function redrawSpellState() {
@@ -230,16 +374,16 @@ function wireSpellUi(state, charId) {
 
     if (preparedCount) preparedCount.textContent = String(prepared.length);
 
-    if (spellSelect) {
-      Array.from(spellSelect.options).forEach((opt) => {
-        opt.selected = prepared.includes(opt.value);
+    if (spellPicker) {
+      spellPicker.querySelectorAll('[data-spell-id]').forEach((el) => {
+        el.classList.toggle('active', prepared.includes(el.dataset.spellId));
       });
     }
 
     if (preparedList) {
       preparedList.innerHTML = prepared.length
         ? prepared
-            .map((id) => `<button type="button" class="pill prepared-pill" data-prepared="${id}">${(cfg.spells.find((s)=>s.id===id)||{name:id}).name}</button>`)
+            .map((id) => `<button type="button" class="pill prepared-pill" data-prepared="${id}"><span>${(cfg.spells.find((s)=>s.id===id)||{name:id}).name}</span><span class="pick-indicator">✓</span></button>`)
             .join('')
         : '<span class="muted">Noch keine Zauber ausgewählt.</span>';
 
@@ -285,9 +429,19 @@ function wireSpellUi(state, charId) {
           const idx = Number(el.dataset.slot);
           const c2 = ch();
           const states2 = Array.from({ length: lc.slots }, (_, i) => c2.slotStates?.[i] || 'empty');
-          if (states2[idx] === 'used') states2[idx] = 'empty';
-          else if (states2[idx] === 'empty') states2[idx] = 'used';
-          persist({ slotStates: states2, spellTab: 'spells' });
+
+          // Leere Slots dürfen nicht direkt geklickt/gesetzt werden.
+          // Belegung passiert nur über ausgewählte Zauber oben.
+          if (states2[idx] === 'empty') return;
+
+          // Gefüllten Slot wieder freigeben und ggf. Zuweisung lösen.
+          states2[idx] = 'empty';
+          const assignments = { ...(c2.spellAssignments || {}) };
+          Object.keys(assignments).forEach((spellId) => {
+            if (assignments[spellId] === idx) delete assignments[spellId];
+          });
+
+          persist({ slotStates: states2, spellAssignments: assignments, spellTab: 'spells' });
           redrawSpellState();
         });
       });
@@ -308,47 +462,36 @@ function wireSpellUi(state, charId) {
     if (cantripInfo) cantripInfo.textContent = c.text;
   });
 
-  spellSelect?.addEventListener('change', () => {
-    const selected = Array.from(spellSelect.selectedOptions);
+  spellPicker?.querySelectorAll('[data-spell-id]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const id = el.dataset.spellId;
+      const lc = levelCfg();
+      const cNow = ch();
+      let nextPrepared = [...(cNow.preparedSpells || [])];
 
-    // Harte Obergrenze: max 5 ausgewählte Zauber
-    if (selected.length > 5) {
-      selected[selected.length - 1].selected = false;
-    }
-
-    const picked = Array.from(spellSelect.selectedOptions).map((o) => o.value).slice(0, 5);
-    const c = ch();
-    const lc = levelCfg();
-    const nextPrepared = picked.filter((id) => available().some((s) => s.id === id)).slice(0, Math.min(5, lc.prepared));
-
-    const cNow = ch();
-    const oldAssignments = { ...(cNow.spellAssignments || {}) };
-    const nextAssignments = {};
-    const nextStates = Array.from({ length: lc.slots }, () => 'empty');
-    nextPrepared.forEach((id) => {
-      const slot = oldAssignments[id];
-      if (slot >= 0 && slot < lc.slots) {
-        nextAssignments[id] = slot;
-        const prevState = cNow.slotStates?.[slot] || 'used';
-        nextStates[slot] = prevState === 'empty' ? 'empty' : 'used';
+      if (nextPrepared.includes(id)) {
+        nextPrepared = nextPrepared.filter((x) => x !== id);
+      } else {
+        const cap = Math.min(5, lc.prepared);
+        if (nextPrepared.length >= cap) return;
+        nextPrepared.push(id);
       }
+
+      const oldAssignments = { ...(cNow.spellAssignments || {}) };
+      const nextAssignments = {};
+      const nextStates = Array.from({ length: lc.slots }, () => 'empty');
+      nextPrepared.forEach((sid) => {
+        const slot = oldAssignments[sid];
+        if (slot >= 0 && slot < lc.slots) {
+          nextAssignments[sid] = slot;
+          const prevState = cNow.slotStates?.[slot] || 'used';
+          nextStates[slot] = prevState === 'empty' ? 'empty' : 'used';
+        }
+      });
+
+      persist({ preparedSpells: nextPrepared, spellAssignments: nextAssignments, slotStates: nextStates, spellTab: 'spells' });
+      redrawSpellState();
     });
-
-    persist({ preparedSpells: nextPrepared, spellAssignments: nextAssignments, slotStates: nextStates, spellTab: 'spells' });
-
-    if (!picked.length) {
-      redrawSpellState();
-      return;
-    }
-    if (picked.length > 1) {
-      redrawSpellState();
-      return;
-    }
-
-    const s = available().find((x) => x.id === picked[0]);
-    if (!s) return;
-    persist({ activeSpellId: s.id, spellTab: 'spells' });
-    redrawSpellState();
   });
 
 
@@ -358,6 +501,11 @@ function wireSpellUi(state, charId) {
   });
 
   redrawSpellState();
+}
+
+function weaponSection(character) {
+  const weapons = Array.isArray(character.waffen) ? character.waffen : [];
+  return `<section class="card weapon-section"><h3>Waffenübersicht</h3>${weapons.length ? `<div class="weapon-grid">${weapons.map((w, i) => `<article class="weapon-card" data-weapon-index="${i}"><header class="weapon-head"><strong>${escapeHtml(w.name || '-')}</strong><span class="weapon-badge">${escapeHtml(w.art || '-')}</span></header><div class="weapon-stats"><div><span class="muted">Angriffsbonus</span><p>${escapeHtml(w.bonus || '-')}</p></div><div><span class="muted">Schaden</span><p>${escapeHtml(w.schaden || '-')}</p></div></div><p class="weapon-use">${escapeHtml(w.einsatz || '')}</p></article>`).join('')}</div>` : '<p class="muted">Noch keine Waffen eingetragen.</p>'}<button type="button" id="add-weapon" class="add-weapon-btn">＋ Waffe hinzufügen</button></section>`;
 }
 
 function field(name, label, value, type = 'text') { return `<label>${label}<input name="${name}" type="${type}" value="${escapeHtml(String(value ?? ''))}" /></label>`; }
