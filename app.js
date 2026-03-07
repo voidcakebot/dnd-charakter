@@ -128,7 +128,7 @@ function loadState() {
 }
 
 function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function getRoute() { const h = location.hash || '#/'; const m1 = h.match(/^#\/char\/(.+)$/); if (m1) return { page: 'detail', id: m1[1] }; const m2 = h.match(/^#\/bio\/(.+)$/); if (m2) return { page: 'bio', id: m2[1] }; const m3 = h.match(/^#\/stats\/(.+)$/); if (m3) return { page: 'stats', id: m3[1] }; return { page: 'home' }; }
+function getRoute() { const h = location.hash || '#/'; const m1 = h.match(/^#\/char\/(.+)$/); if (m1) return { page: 'detail', id: m1[1] }; const m2 = h.match(/^#\/bio\/(.+)$/); if (m2) return { page: 'bio', id: m2[1] }; const m3 = h.match(/^#\/stats\/(.+)$/); if (m3) return { page: 'stats', id: m3[1] }; const m4 = h.match(/^#\/gm$/); if (m4) return { page: 'gm' }; return { page: 'home' }; }
 function goTo(hash) { location.hash = hash; }
 
 function render() {
@@ -137,8 +137,29 @@ function render() {
   const route = getRoute();
 
   if (route.page === 'home') {
-    app.innerHTML = `<section class="container"><div class="grid">${state.characters.map((c) => c.id === 'gm' ? `<article class="card char-card"><div class="token-wrap token-wrap-card"><img src="${c.token || TOKEN_SOURCE}" class="token-img" /></div><h3>${c.name || 'GM'}</h3><ul class="hp-list">${state.characters.filter((p) => p.id !== 'gm').map((p) => `<li><span>${p.name || p.klasse}</span><strong>${p.hpAktuell}/${p.hpMax} HP</strong></li>`).join('')}</ul></article>` : `<article class="card char-card"><div class="token-wrap token-wrap-card"><img src="${c.token || TOKEN_SOURCE}" class="token-img" /></div><h3>${c.name || '(Name folgt)'}</h3><p class="muted">${c.volk} · ${c.klasse} · Stufe ${c.stufe}</p><p><strong>HP</strong> ${c.hpAktuell}/${c.hpMax} · <strong>XP</strong> ${c.xp}</p><button data-open="${c.id}">Charakter öffnen</button></article>`).join('')}</div></section>`;
+    app.innerHTML = `<section class="container"><div class="grid">${state.characters.map((c) => c.id === 'gm' ? `<article class="card char-card"><div class="token-wrap token-wrap-card"><img src="${c.token || TOKEN_SOURCE}" class="token-img" /></div><h3>${c.name || 'GM'}</h3><ul class="hp-list">${state.characters.filter((p) => p.id !== 'gm').map((p) => `<li><span>${p.name || p.klasse}</span><strong>${p.hpAktuell}/${p.hpMax} HP</strong></li>`).join('')}</ul><button class="bio-btn" data-gm-open="1">Charakterübersicht</button></article>` : `<article class="card char-card ${c.dead ? 'is-dead' : ''}"><div class="token-wrap token-wrap-card"><img src="${c.token || TOKEN_SOURCE}" class="token-img" /></div><h3>${c.name || '(Name folgt)'}${c.dead ? ' ☠️' : ''}</h3><p class="muted">${c.volk} · ${c.klasse} · Stufe ${c.stufe}</p><p><strong>HP</strong> ${c.hpAktuell}/${c.hpMax} · <strong>XP</strong> ${c.xp}</p><button data-open="${c.id}">Charakter öffnen</button></article>`).join('')}</div></section>`;
     document.querySelectorAll('[data-open]').forEach((btn) => btn.addEventListener('click', () => goTo(`#/char/${btn.dataset.open}`)));
+    document.querySelectorAll('[data-gm-open]').forEach((btn) => btn.addEventListener('click', () => goTo('#/gm')));
+    return;
+  }
+
+  if (route.page === 'gm') {
+    const players = state.characters.filter((c) => c.id !== 'gm');
+    const deadPlayers = players.filter((p) => p.dead);
+    app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${(state.characters.find((c)=>c.id==='gm') || {}).token || TOKEN_SOURCE}" class="token-img" /></div><h2>Spielleiter · Charakterübersicht</h2></div><div class="hp-list">${players.map((p) => `<li><span>${p.name || p.klasse}</span><strong>HP ${p.hpAktuell}/${p.hpMax} · XP ${p.xp} · Stufe ${p.stufe}</strong></li>`).join('')}</div>${deadPlayers.length ? `<div class="spell-info-box"><strong>Wiederbelebung</strong><div class="weapon-action-buttons">${deadPlayers.map((p) => `<button type="button" class="bio-btn" data-revive-id="${p.id}">${p.name || p.klasse} wiederbeleben</button>`).join('')}</div></div>` : ''}</div><div class="save-bottom"><button class="secondary" id="back-gm">Zurück</button></div></section>`;
+
+    document.getElementById('back-gm').onclick = () => goTo('#/');
+    document.querySelectorAll('[data-revive-id]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-revive-id');
+        const i = state.characters.findIndex((c) => c.id === id);
+        if (i < 0) return;
+        const hp = Math.max(1, Number(state.characters[i].hpAktuell || 1));
+        state.characters[i] = { ...state.characters[i], dead: false, hpAktuell: hp };
+        saveState(state);
+        render();
+      });
+    });
     return;
   }
 
@@ -214,7 +235,7 @@ function render() {
   const character = state.characters.find((c) => c.id === route.id);
   if (!character || character.id === 'gm') return goTo('#/');
 
-  app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${character.token || TOKEN_SOURCE}" class="token-img" /></div><div><h2 id="detail-title">${character.name || '(Name folgt)'}</h2><button type="button" id="open-bio" class="bio-btn">${character.klasse}-Profil</button></div></div><form id="char-form" class="form-grid">${field('name','Name',character.name)}${field('stufe','Stufe',character.stufe,'number')}${field('xp','XP',character.xp,'number')}<div class="hp-editor" style="grid-column:1/-1"><label>Trefferpunkte (aktuell / max)</label><div class="hp-controls"><button type="button" class="secondary" id="hp-minus">−</button><span id="hp-readout">${character.hpAktuell} / ${character.hpMax}</span><button type="button" id="hp-plus">+</button><input type="hidden" name="hpAktuell" id="hp-aktuell-input" value="${character.hpAktuell}" /><label class="hp-max-label">Max HP<input name="hpMax" id="hp-max-input" type="number" min="1" value="${character.hpMax}" /></label></div></div><label style="grid-column:1/-1">Notizen<textarea name="notizen" rows="4">${escapeHtml(character.notizen || '')}</textarea></label></form></div>${weaponSection(character)}${spellSection(character)}<div id="unconscious-overlay" class="unconscious-overlay" aria-hidden="true"><div class="unconscious-card"><h2>OHNMACHT</h2><img id="unconscious-image" class="unconscious-image" alt="Ohnmacht" src="Unterlagen/bilder/ohnmacht-katze.jpg" /><button id="revive-btn" type="button">Gerettet</button></div></div><div class="save-bottom"><button class="secondary" id="back-bottom">← Zur Auswahl</button><div class="save-right"><span id="save-msg" class="success"></span><button type="submit" form="char-form">Speichern</button></div></div></section>`;
+  app.innerHTML = `<section class="container"><div class="card"><div class="detail-head"><div class="token-wrap token-wrap-small"><img src="${character.token || TOKEN_SOURCE}" class="token-img" /></div><div><h2 id="detail-title">${character.name || '(Name folgt)'}</h2><button type="button" id="open-bio" class="bio-btn">${character.klasse}-Profil</button></div></div><form id="char-form" class="form-grid">${field('name','Name',character.name)}${field('stufe','Stufe',character.stufe,'number')}${field('xp','XP',character.xp,'number')}<div class="hp-editor" style="grid-column:1/-1"><label>Trefferpunkte (aktuell / max)</label><div class="hp-controls"><button type="button" class="secondary" id="hp-minus">−</button><span id="hp-readout">${character.hpAktuell} / ${character.hpMax}</span><button type="button" id="hp-plus">+</button><input type="hidden" name="hpAktuell" id="hp-aktuell-input" value="${character.hpAktuell}" /><label class="hp-max-label">Max HP<input name="hpMax" id="hp-max-input" type="number" min="1" value="${character.hpMax}" /></label></div></div><label style="grid-column:1/-1">Notizen<textarea name="notizen" rows="4">${escapeHtml(character.notizen || '')}</textarea></label></form></div>${weaponSection(character)}${spellSection(character)}<div id="weapon-action-overlay" class="unconscious-overlay" aria-hidden="true"><div class="unconscious-card"><h2>Waffe auswählen</h2><div class="weapon-action-buttons"><button id="weapon-edit-btn" type="button" class="secondary">Bearbeiten</button><button id="weapon-delete-btn" type="button" class="secondary">Löschen</button><button id="weapon-cancel-btn" type="button" class="secondary">Abbrechen</button></div></div></div><div id="unconscious-overlay" class="unconscious-overlay" aria-hidden="true"><div class="unconscious-card"><h2>OHNMACHT</h2><img id="unconscious-image" class="unconscious-image" alt="Ohnmacht" src="Unterlagen/bilder/ohnmacht-katze.jpg" /><div class="weapon-action-buttons"><button id="revive-btn" type="button" class="secondary">Gerettet</button><button id="dead-btn" type="button" class="secondary">Tod</button></div></div></div><div class="save-bottom"><button class="secondary" id="back-bottom">← Zur Auswahl</button><div class="save-right"><span id="save-msg" class="success"></span><button type="submit" form="char-form">Speichern</button></div></div></section>`;
 
   document.getElementById('back-bottom').onclick = () => goTo('#/');
   document.getElementById('open-bio').onclick = () => goTo(`#/bio/${character.id}`);
@@ -241,35 +262,56 @@ function render() {
     render();
   });
 
+  const weaponOverlay = document.getElementById('weapon-action-overlay');
+  const weaponEditBtn = document.getElementById('weapon-edit-btn');
+  const weaponDeleteBtn = document.getElementById('weapon-delete-btn');
+  const weaponCancelBtn = document.getElementById('weapon-cancel-btn');
+  let selectedWeaponIndex = null;
+
+  function closeWeaponOverlay() {
+    if (weaponOverlay) weaponOverlay.classList.remove('show');
+    selectedWeaponIndex = null;
+  }
+
   document.querySelectorAll('[data-weapon-index]').forEach((el) => {
     el.addEventListener('click', () => {
-      const weaponIndex = Number(el.getAttribute('data-weapon-index'));
-      const i = state.characters.findIndex((c) => c.id === character.id);
-      const current = state.characters[i];
-      const waffen = Array.isArray(current.waffen) ? [...current.waffen] : [];
-      const w = waffen[weaponIndex];
-      if (!w) return;
-
-      const action = prompt('Waffe bearbeiten: "edit" zum Bearbeiten, "delete" zum Löschen', 'edit');
-      if (!action) return;
-
-      if (action.toLowerCase() === 'delete') {
-        const ok = confirm(`Waffe "${w.name}" wirklich löschen?`);
-        if (!ok) return;
-        waffen.splice(weaponIndex, 1);
-        state.characters[i] = { ...current, waffen };
-        saveState(state);
-        render();
-        return;
-      }
-
-      const updatedWeapon = weaponPromptFlow(w);
-      if (!updatedWeapon) return;
-      waffen[weaponIndex] = updatedWeapon;
-      state.characters[i] = { ...current, waffen };
-      saveState(state);
-      render();
+      selectedWeaponIndex = Number(el.getAttribute('data-weapon-index'));
+      if (weaponOverlay) weaponOverlay.classList.add('show');
     });
+  });
+
+  weaponCancelBtn?.addEventListener('click', closeWeaponOverlay);
+
+  weaponDeleteBtn?.addEventListener('click', () => {
+    if (selectedWeaponIndex === null) return;
+    const i = state.characters.findIndex((c) => c.id === character.id);
+    const current = state.characters[i];
+    const waffen = Array.isArray(current.waffen) ? [...current.waffen] : [];
+    const w = waffen[selectedWeaponIndex];
+    if (!w) return closeWeaponOverlay();
+    const ok = confirm(`Waffe "${w.name}" wirklich löschen?`);
+    if (!ok) return;
+    waffen.splice(selectedWeaponIndex, 1);
+    state.characters[i] = { ...current, waffen };
+    saveState(state);
+    closeWeaponOverlay();
+    render();
+  });
+
+  weaponEditBtn?.addEventListener('click', () => {
+    if (selectedWeaponIndex === null) return;
+    const i = state.characters.findIndex((c) => c.id === character.id);
+    const current = state.characters[i];
+    const waffen = Array.isArray(current.waffen) ? [...current.waffen] : [];
+    const w = waffen[selectedWeaponIndex];
+    if (!w) return closeWeaponOverlay();
+    const updatedWeapon = weaponPromptFlow(w);
+    if (!updatedWeapon) return;
+    waffen[selectedWeaponIndex] = updatedWeapon;
+    state.characters[i] = { ...current, waffen };
+    saveState(state);
+    closeWeaponOverlay();
+    render();
   });
 
   const hpAktuellInput = document.getElementById('hp-aktuell-input');
@@ -277,6 +319,8 @@ function render() {
   const hpReadout = document.getElementById('hp-readout');
   const overlay = document.getElementById('unconscious-overlay');
   const reviveBtn = document.getElementById('revive-btn');
+  const deadBtn = document.getElementById('dead-btn');
+  let spellDirtySinceSave = false;
 
   function syncHpReadout() {
     const max = Math.max(1, Number(hpMaxInput.value || 1));
@@ -298,11 +342,21 @@ function render() {
     const value = Math.max(1, Math.min(max, Number(input) || 1));
     hpAktuellInput.value = value;
     syncHpReadout();
+
+    const i = state.characters.findIndex((c) => c.id === character.id);
+    state.characters[i] = { ...state.characters[i], hpAktuell: value, dead: false };
+    saveState(state);
+    spellDirtySinceSave = true;
+  });
+
+  deadBtn?.addEventListener('click', () => {
+    const i = state.characters.findIndex((c) => c.id === character.id);
+    state.characters[i] = { ...state.characters[i], dead: true, hpAktuell: 0 };
+    saveState(state);
+    goTo('#/');
   });
 
   syncHpReadout();
-
-  let spellDirtySinceSave = false;
 
   document.getElementById('char-form').addEventListener('submit', (e) => {
     e.preventDefault();
